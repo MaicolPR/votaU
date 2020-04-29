@@ -19,6 +19,11 @@ app.controller("voto", ["$scope", function($scope){
 	$scope.idvoto = 1;
 	$scope.estado = 'Valido';
 
+	for(i=0; i<10000; i++){
+		$scope.votos[i] = {usuario: 'humberto', eleccion: 'calle 26', h: $scope.estado, numero: $scope.idvoto}
+		$scope.idvoto++;
+	}
+
 	$scope.ingresar = function(){
 		if($scope.usuarioVoto == $scope.admin){
 			$scope.listaVotos = true;
@@ -36,13 +41,8 @@ app.controller("voto", ["$scope", function($scope){
 		$scope.idvoto ++;
 	};
 
-	$scope.anularVoto = function(){
-		for(i = 0; i < votos.lenght; i++){
-			if($scope.votoAnular == $scope.votos.numero[i]){
-				$scope.votos.h = 'Nulo';
-				i = votos.lenght;
-			}
-		}
+	$scope.anularVoto = function(id){
+		$scope.votos[id-1].h = 'Nulo';
 	};
 
 }])
