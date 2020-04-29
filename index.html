@@ -17,23 +17,39 @@
 	</div>	
 	<div class="container">
 		<h2>{{UrnaDelDia}}</h2>
-		<hr>
+		<hr ng-hide="listaVotos">
 		<ul class="unstyled" ng-show="mostrarLista">
 			<li class="alert alert-light" role="alert" ng-repeat="opcion in OpcionesUrna" ng-click="tomarDato(opcion)">
 				<span>{{opcion.nombre}}</span>
 			</li>
 		</ul>
-		<hr>
+		<hr ng-hide="listaVotos">
 		<div ng-hide="mostrarLista">
 		<input type="text" placeholder="usuario" ng-model="usuarioVoto">
-		<button class="btn btn-dark" ng-click="ingresar()" >Ingresar</button>
+		<button class="btn btn-dark" ng-click="ingresar()" >Participar</button>
 		</div>
 		<div ng-show="listaVotos">
-		<input type="number" placeholder="Id voto" ng-model="votoAnular">
-		<button  class="btn btn-danger" ng-click="anularVoto()">Anular</button>
+		<input type="number" placeholder="#Voto" ng-model="votoAnular">
+		<button  class="btn btn-danger" ng-click="anularVoto(votoAnular)">Anular</button>
 		</div>
-		<div ng-repeat="voto in votos" ng-show="listaVotos">{{voto}}
-		</div>
+		<table class="table table-sm" ng-show="listaVotos">
+  		<thead>
+    		<tr>
+      			<th scope="col">#Voto</th>
+      			<th scope="col">Nombre</th>
+      			<th scope="col">Opcion</th>
+      			<th scope="col">Voto</th>
+    		</tr>
+  		</thead>
+  		<tbody>
+    		<tr ng-repeat="voto in votos">
+      			<th scope="row">{{voto.numero}}</th>
+      			<td>{{voto.usuario}}</td>
+     		 	<td>{{voto.eleccion}}</td>
+     		 	<td>{{voto.h}}</td>
+   			 </tr>
+  		</tbody>
+	</table>
 	</div>
 	
   </body>
